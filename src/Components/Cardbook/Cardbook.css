@@ -1,0 +1,15 @@
+.bookContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin: 12px;
+}
+
+.cardStyle {
+  cursor: pointer;
+}
+
+.cardStyle :focus {
+  outline: 2px solid blue;
+  box-shadow: 0 0 5px blue;
+}
