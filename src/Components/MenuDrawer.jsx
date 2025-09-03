@@ -8,8 +8,24 @@ import {
 } from "@mui/material";
 import InboxIcon from "@mui/icons-material/Inbox";
 import MailIcon from "@mui/icons-material/Mail";
+import { Link, NavLink } from "react-router";
 
 export const MenuDrawer = ({ isOpenDrawer, setIsOpenDrawer }) => {
+  const navbar = [
+    {
+      path: "/",
+      name: "Listado de libros",
+    },
+    {
+      path: "/searcher",
+      name: "Buscar libro",
+    },
+    {
+      path: "/givebook",
+      name: "devolucion de libros",
+    },
+  ];
+
   return (
     <Drawer
       anchor="left"
@@ -17,18 +33,23 @@ export const MenuDrawer = ({ isOpenDrawer, setIsOpenDrawer }) => {
       onClose={() => setIsOpenDrawer(false)}
     >
       <List>
-        {["Listado de libros", "Buscar Libro", "Devolución libros"].map(
-          (text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          )
-        )}
+        {navbar.map(({ path, name }, index) => (
+          <ListItem key={path} disablePadding>
+            <ListItemButton>
+              <ListItemIcon>
+                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+              </ListItemIcon>
+              <NavLink
+                to={path}
+                className={({ isActive, isPending }) =>
+                  isPending ? "pending" : isActive ? "active" : ""
+                }
+              >
+                <ListItemText primary={name} />
+              </NavLink>
+            </ListItemButton>
+          </ListItem>
+        ))}
       </List>
     </Drawer>
   );

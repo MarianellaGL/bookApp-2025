@@ -1,9 +1,9 @@
 import { Card, CardContent, Chip, Typography } from "@mui/material";
 import "./CardBook.css";
 
-export const CardBook = ({ cardBook }) => {
+export const CardBook = ({ handleRedirectToDetail, cardBook }) => {
   return (
-    <Card className="cardStyle" key={cardBook._id}>
+    <Card className="cardStyle" key={cardBook._id} onClick={()=> handleRedirectToDetail(cardBook)}>
       <CardContent
         sx={{
           display: "flex",

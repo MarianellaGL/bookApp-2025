@@ -3,8 +3,10 @@ import { getBooks } from "../Services/getBooks";
 import { Card, CardContent, CircularProgress, Typography } from "@mui/material";
 import "./listbooks.css";
 import { CardBook } from "../Components/Cardbook/CardBook";
+import { useNavigate } from "react-router";
 
 export const ListBooks = () => {
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const [booksList, setBooksList] = useState([]);
 
@@ -13,6 +15,11 @@ export const ListBooks = () => {
     console.log(response);
     setBooksList(response);
     setIsLoading(false);
+  };
+
+  const handleRedirectToDetail = (cardBook) => {
+    console.log(cardBook);
+    navigate(`/book/${cardBook?._id}`);
   };
 
   useEffect(() => {
@@ -28,7 +35,12 @@ export const ListBooks = () => {
     <div className="listbooks">
       {!isLoading &&
         booksList.length > 0 &&
-        booksList?.map((cardBook) => <CardBook cardBook={cardBook} />)}
+        booksList?.map((cardBook) => (
+          <CardBook
+            cardBook={cardBook}
+            handleRedirectToDetail={handleRedirectToDetail}
+          />
+        ))}
     </div>
   );
 };
