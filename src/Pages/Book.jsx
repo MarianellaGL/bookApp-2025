@@ -1,25 +1,24 @@
-import { Typography } from "@mui/material";
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { getBook } from "../Services/getBook";
+import { Chip, Divider, Typography } from "@mui/material";
+import { useBooksSelected } from "../hooks/useBooksSelected";
+import "./Book.css";
 
 export const Book = () => {
-  const { id } = useParams();
-  const [bookSelected, setBookSelected] = useState();
+  const { bookSelected } = useBooksSelected();
 
-  const handleBook = async () => {
-    const result = await getBook(id);
-    setBookSelected(result);
-  };
-
-  useEffect(() => {
-    handleBook();
-  }, [id]);
-
+  console.log(bookSelected);
   return (
-    <div>
-      <div>
-        <Typography>{bookSelected?._id}</Typography>
+    <div className="container">
+      <div className="cardBookSelected">
+        <div className="containerTitle">
+          <Typography>
+            {bookSelected?.titulo} - {bookSelected?.autor}
+          </Typography>
+          <Typography>{bookSelected?.categoria}</Typography>
+        </div>
+        <Divider />
+        <div className="containerTitle">
+          <Chip label={bookSelected?.estado} color="success" />
+        </div>
       </div>
     </div>
   );

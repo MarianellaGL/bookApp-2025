@@ -1,0 +1,24 @@
+.cardBookSelected {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid gray;
+  padding: 16px;
+  border-radius: 24px;
+}
+
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.containerTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+}

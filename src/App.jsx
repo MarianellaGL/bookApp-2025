@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router";
 import { Book } from "./Pages/Book";
 import { Searcher } from "./Pages/Searcher/Searcher";
 import { GiveBook } from "./Pages/GiveBook/GiveBook";
+import { LoadBook } from "./Pages/LoadBook/LoadBook";
 
 function App() {
   const [isOpenDrawer, setIsOpenDrawer] = useState(false);
@@ -20,6 +21,7 @@ function App() {
       />
       <Routes>
         <Route index path="/" element={<ListBooks />} />
+        <Route path="/loadBook" element={<LoadBook />} />
         <Route path="/book/:id" element={<Book />} />
         <Route path="/givebook" element={<GiveBook />} />
         <Route path="/searcher" element={<Searcher />} />

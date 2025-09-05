@@ -24,6 +24,10 @@ export const MenuDrawer = ({ isOpenDrawer, setIsOpenDrawer }) => {
       path: "/givebook",
       name: "devolucion de libros",
     },
+    {
+      path: "/loadBook",
+      name: "Cargar libro",
+    },
   ];
 
   return (
