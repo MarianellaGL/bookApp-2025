@@ -5,6 +5,7 @@ import { getBook } from "../Services/getBook";
 export const useBooksSelected = () => {
   const { id } = useParams();
   const [bookSelected, setBookSelected] = useState();
+  const [open, setOpen] = useState(false);
 
   const handleBook = async () => {
     const result = await getBook(id);
@@ -15,5 +16,5 @@ export const useBooksSelected = () => {
     handleBook();
   }, [id]);
 
-  return { bookSelected };
+  return { bookSelected, id, open, setOpen };
 };

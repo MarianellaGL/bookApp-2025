@@ -20,7 +20,7 @@ const initialState = {
   fechaDevolucion: "",
 };
 
-const ESTADOS = ["Disponible", "Prestado"];
+export const ESTADOS = ["Disponible", "Prestado"];
 
 export const LoadBook = () => {
   const { handleChange, handleSubmit, valueBook, loading } =

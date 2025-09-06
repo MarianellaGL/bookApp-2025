@@ -1,11 +1,11 @@
-import { Chip, Divider, Typography } from "@mui/material";
+import { Button, Chip, Divider, Typography } from "@mui/material";
 import { useBooksSelected } from "../hooks/useBooksSelected";
 import "./Book.css";
+import { ChangeBookData } from "./ChangeBookData/ChangeBookData";
 
 export const Book = () => {
-  const { bookSelected } = useBooksSelected();
+  const { bookSelected, id, open, setOpen } = useBooksSelected();
 
-  console.log(bookSelected);
   return (
     <div className="container">
       <div className="cardBookSelected">
@@ -18,8 +18,18 @@ export const Book = () => {
         <Divider />
         <div className="containerTitle">
           <Chip label={bookSelected?.estado} color="success" />
+          <Button type="button" onClick={() => setOpen(!open)}>
+            {" "}
+            Modificar{" "}
+          </Button>
         </div>
       </div>
+      <ChangeBookData
+        open={open}
+        bookSelected={bookSelected}
+        bookId={id}
+        setOpen={setOpen}
+      />
     </div>
   );
 };
