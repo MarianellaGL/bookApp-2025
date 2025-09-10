@@ -4,16 +4,17 @@ import { Card, CardContent, CircularProgress, Typography } from "@mui/material";
 import "./listbooks.css";
 import { CardBook } from "../Components/Cardbook/CardBook";
 import { useNavigate } from "react-router";
+import { useBookContext } from "../context/BookContext";
 
 export const ListBooks = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [booksList, setBooksList] = useState([]);
+  const { books, setBooks } = useBookContext();
 
   const handleBooks = async () => {
     const response = await getBooks();
     console.log(response);
-    setBooksList(response);
+    setBooks(response);
     setIsLoading(false);
   };
 
@@ -34,8 +35,8 @@ export const ListBooks = () => {
   return (
     <div className="listbooks">
       {!isLoading &&
-        booksList.length > 0 &&
-        booksList?.map((cardBook) => (
+        books.length > 0 &&
+        books?.map((cardBook) => (
           <CardBook
             cardBook={cardBook}
             handleRedirectToDetail={handleRedirectToDetail}

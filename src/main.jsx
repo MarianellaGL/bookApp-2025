@@ -5,12 +5,15 @@ import { BrowserRouter } from "react-router";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import App from "./App.jsx";
+import { BookProvider } from "./context/BookContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
-        <App />
+        <BookProvider>
+          <App />
+        </BookProvider>
       </LocalizationProvider>
     </BrowserRouter>
   </StrictMode>

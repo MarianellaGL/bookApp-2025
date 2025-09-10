@@ -1,17 +1,19 @@
 import { useState } from "react";
 import { postBook } from "../Services/postBook";
+import { useBookContext } from "../context/BookContext";
+import { useNavigate } from "react-router";
 
 export const useLoadBook = (initialState) => {
+  const navigate = useNavigate();
   const [valueBook, setValueBook] = useState(initialState);
   const [loading, setLoading] = useState(false);
+  const { books } = useBookContext();
 
   const handleChange = (e) => {
     console.log(e.target);
     const { name, value } = e.target;
     setValueBook((v) => ({ ...v, [name]: value }));
   };
-
-  console.log(valueBook);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,5 +38,16 @@ export const useLoadBook = (initialState) => {
     }
   };
 
-  return { handleSubmit, handleChange, valueBook, loading };
+  const handleRedirectToDetail = (cardBook) => {
+    console.log(cardBook);
+    navigate(`/book/${cardBook?._id}`);
+  };
+  return {
+    handleSubmit,
+    handleChange,
+    valueBook,
+    loading,
+    books,
+    handleRedirectToDetail,
+  };
 };
