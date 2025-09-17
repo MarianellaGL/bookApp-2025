@@ -1,31 +1,33 @@
 import { useEffect, useState } from "react";
-import { getBooks } from "../Services/getBooks";
 import { Card, CardContent, CircularProgress, Typography } from "@mui/material";
 import "./listbooks.css";
 import { CardBook } from "../Components/Cardbook/CardBook";
 import { useNavigate } from "react-router";
 import { useBookContext } from "../context/BookContext";
+import { getBookMockup } from "../mockup/getBookMockup";
 
 export const ListBooks = () => {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { books, setBooks } = useBookContext();
 
-  const handleBooks = async () => {
+  /*const handleBooks = async () => {
     const response = await getBooks();
     console.log(response);
     setBooks(response);
     setIsLoading(false);
-  };
+  };*/
 
   const handleRedirectToDetail = (cardBook) => {
-    console.log(cardBook);
     navigate(`/book/${cardBook?._id}`);
   };
 
   useEffect(() => {
     setIsLoading(true);
-    handleBooks();
+    setTimeout(() => {
+      setBooks(getBookMockup);
+      setIsLoading(false);
+    }, 500);
   }, []);
 
   if (isLoading) {

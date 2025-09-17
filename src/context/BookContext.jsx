@@ -8,6 +8,7 @@ export const useBookContext = () => useContext(BookContext);
 
 export const BookProvider = ({ children }) => {
   const [books, setBooks] = useState([]);
+  const [bookSelected, setBookSelected] = useState();
 
   useEffect(() => {
     if (books.length > 0) {
@@ -22,7 +23,9 @@ export const BookProvider = ({ children }) => {
   }, []);
 
   return (
-    <BookContext.Provider value={{ books, setBooks }}>
+    <BookContext.Provider
+      value={{ books, setBooks, bookSelected, setBookSelected }}
+    >
       {children}
     </BookContext.Provider>
   );

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { postBook } from "../Services/postBook";
+//import { postBook } from "../Services/postBook";
 import { useBookContext } from "../context/BookContext";
 import { useNavigate } from "react-router";
 
@@ -7,7 +7,7 @@ export const useLoadBook = (initialState) => {
   const navigate = useNavigate();
   const [valueBook, setValueBook] = useState(initialState);
   const [loading, setLoading] = useState(false);
-  const { books } = useBookContext();
+  const { books, setBooks } = useBookContext();
 
   const handleChange = (e) => {
     console.log(e.target);
@@ -27,9 +27,10 @@ export const useLoadBook = (initialState) => {
         //fechaDevolucion
       };
       setLoading(true);
-      await postBook(body);
+      //await postBook(body);
 
       setLoading(false);
+      setBooks((prevBooks) => [body, ...prevBooks]);
       setValueBook(initialState);
     } catch (error) {
       console.error(error);

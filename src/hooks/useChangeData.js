@@ -1,7 +1,6 @@
 import dayjs from "dayjs";
 import { useEffect, useState } from "react";
-import { putBook } from "../Services/putBook";
-import { useParams } from "react-router";
+import { useBookContext } from "../context/BookContext";
 
 const initialState = {
   titulo: "",
@@ -13,6 +12,7 @@ const initialState = {
 };
 export const useChangeData = (bookSelected, bookId) => {
   const [bookToModify, setBookToModify] = useState(initialState);
+  const { setBookSelected } = useBookContext();
   const handleChange = (e, isFromDate) => {
     if (isFromDate) {
       setBookToModify((v) => ({
@@ -37,8 +37,11 @@ export const useChangeData = (bookSelected, bookId) => {
         fechaPrestamo: bookToModify.fechaPrestamo.toISOString(),
         fechaDevolucion: bookToModify.fechaDevolucion.toISOString(),
       };
-      await putBook(bookId, body);
-
+      //  await putBook(bookId, body);
+      setBookSelected((book) => ({
+        ...book,
+        ...body,
+      }));
       setBookToModify(initialState);
     } catch (error) {
       console.error(error);

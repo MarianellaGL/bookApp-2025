@@ -1,7 +1,7 @@
 const BOOKS = import.meta.env.VITE_BOOKS;
 const AUTH = import.meta.env.VITE_TOKEN_BOOKS;
 
-export const postBook = async (body) => {
+/*export const postBook = async (body) => {
   const response = await fetch(`${BOOKS}`, {
     method: "POST",
     headers: {
@@ -15,3 +15,4 @@ export const postBook = async (body) => {
   console.log(result);
   return result;
 };
+*/
