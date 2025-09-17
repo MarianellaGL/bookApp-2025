@@ -5,8 +5,10 @@ import { CardBook } from "../Components/Cardbook/CardBook";
 import { useNavigate } from "react-router";
 import { useBookContext } from "../context/BookContext";
 import { getBookMockup } from "../mockup/getBookMockup";
+import { STATE, useThemeContext } from "../context/ThemeContext";
 
 export const ListBooks = () => {
+  const { theme } = useThemeContext();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
   const { books, setBooks } = useBookContext();
@@ -35,7 +37,12 @@ export const ListBooks = () => {
   }
 
   return (
-    <div className="listbooks">
+    <div
+      className="listbooks"
+      style={{
+        backgroundColor: theme === STATE.LIGHT ? "#d7d5d5ff" : "#000000",
+      }}
+    >
       {!isLoading &&
         books.length > 0 &&
         books?.map((cardBook) => (
